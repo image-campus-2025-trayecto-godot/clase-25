@@ -1,0 +1,411 @@
+[gd_scene load_steps=21 format=3 uid="uid://dvd7nakwwre3f"]
+
+[ext_resource type="Script" uid="uid://dtoovey3km3b3" path="res://addons/slides/diapositivas.gd" id="1_rsqhl"]
+[ext_resource type="Texture2D" uid="uid://plqq7bqjwbib" path="res://addons/slides/imagenes/image-background.jpg" id="2_x2bli"]
+[ext_resource type="LabelSettings" uid="uid://cqxqo63xsufgl" path="res://addons/slides/resources/titulo_label_settings.tres" id="3_vpeoj"]
+[ext_resource type="LabelSettings" uid="uid://chctaomdgqcxa" path="res://addons/slides/resources/clase_tema_label_settings.tres" id="4_rxgjl"]
+[ext_resource type="StyleBox" uid="uid://dihxtlpovxmqy" path="res://addons/slides/resources/clase_tema_style.tres" id="4_vpeoj"]
+[ext_resource type="LabelSettings" uid="uid://pgfo5l5qvodc" path="res://addons/slides/resources/profes_label_settings.tres" id="5_cbwq5"]
+[ext_resource type="LabelSettings" uid="uid://ciklliuwfowi" path="res://addons/slides/resources/fecha_label_settings.tres" id="6_6ewpg"]
+[ext_resource type="Script" uid="uid://cjl8wre8g346n" path="res://addons/slides/utils/animation_player.gd" id="7_w1i3l"]
+[ext_resource type="LabelSettings" uid="uid://dt82lbtlp1h3k" path="res://addons/slides/resources/titulo_filmina_agenda_label_settings.tres" id="8_4sra1"]
+[ext_resource type="PackedScene" uid="uid://b8g6uj40pie5a" path="res://diapositivas/dot_product/rotable_vector.tscn" id="9_4sra1"]
+[ext_resource type="Script" uid="uid://c55dq6pg6tses" path="res://diapositivas/vectores_producto_punto.gd" id="9_a7dwd"]
+
+[sub_resource type="Theme" id="Theme_l4vhf"]
+RichTextLabel/colors/default_color = Color(0.96474224, 0.96474224, 0.9647421, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dftkn"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_a7dwd"]
+font_size = 40
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y722n"]
+bg_color = Color(0.211765, 0.239216, 0.290196, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.113725, 0.133333, 0.160784, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 25.0
+expand_margin_top = 25.0
+expand_margin_right = 25.0
+expand_margin_bottom = 25.0
+
+[sub_resource type="SystemFont" id="SystemFont_503f1"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_y722n"]
+font = SubResource("SystemFont_503f1")
+font_size = 100
+
+[sub_resource type="Animation" id="Animation_vpeoj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("¿Preguntas?:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x2bli"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("¿Preguntas?:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(0.8, 0.8, 1),
+"update": 0,
+"values": [Vector2(0.8, 0.8), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rxgjl"]
+_data = {
+&"RESET": SubResource("Animation_vpeoj"),
+&"new_animation": SubResource("Animation_x2bli")
+}
+
+[node name="Diapositivas" type="Control"]
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = SubResource("Theme_l4vhf")
+script = ExtResource("1_rsqhl")
+diapositiva_actual = 3
+metadata/_edit_lock_ = true
+
+[node name="EjemploTitulo" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Fondo" type="TextureRect" parent="EjemploTitulo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("2_x2bli")
+
+[node name="Titulo" type="Label" parent="EjemploTitulo"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -844.0
+offset_top = 235.0
+offset_right = 844.0
+offset_bottom = 694.0
+grow_horizontal = 2
+text = "Desarrollo de Videojuegos con Godot Engine"
+label_settings = ExtResource("3_vpeoj")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Subtitulo" type="Label" parent="EjemploTitulo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -446.0
+offset_top = 37.0
+offset_right = 446.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = ExtResource("4_vpeoj")
+text = "Clase 24
+Matemática para desarrolladores"
+label_settings = ExtResource("4_rxgjl")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Nombre" type="Label" parent="EjemploTitulo"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -844.0
+offset_top = 302.0
+offset_right = 844.0
+offset_bottom = 761.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Ariel Manzur, Juan Manuel Fernandes dos Santos"
+label_settings = ExtResource("5_cbwq5")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Fecha" type="Label" parent="EjemploTitulo"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -427.0
+offset_top = -91.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "03/11/2025"
+label_settings = ExtResource("6_6ewpg")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Agenda" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Fondo" type="TextureRect" parent="Agenda"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("2_x2bli")
+
+[node name="MarginContainer" type="MarginContainer" parent="Agenda"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Agenda/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="Titulo" type="Label" parent="Agenda/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Agenda"
+label_settings = ExtResource("8_4sra1")
+
+[node name="Label" type="Label" parent="Agenda/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "- Vectores
+- Matrices
+- Cuaterniones"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="Vectores" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Fondo" type="TextureRect" parent="Vectores"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("2_x2bli")
+
+[node name="MarginContainer" type="MarginContainer" parent="Vectores"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Vectores/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="Titulo" type="Label" parent="Vectores/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Vectores"
+label_settings = ExtResource("8_4sra1")
+
+[node name="Contenido" type="Label" parent="Vectores/MarginContainer/VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="Vectores-ProductoPunto" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("9_a7dwd")
+metadata/_edit_lock_ = true
+
+[node name="Fondo" type="TextureRect" parent="Vectores-ProductoPunto"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 0
+texture = ExtResource("2_x2bli")
+
+[node name="MarginContainer" type="MarginContainer" parent="Vectores-ProductoPunto"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Vectores-ProductoPunto/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 70
+
+[node name="Titulo" type="Label" parent="Vectores-ProductoPunto/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Vectores"
+label_settings = ExtResource("8_4sra1")
+
+[node name="Contenido" type="Label" parent="Vectores-ProductoPunto/MarginContainer/VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="OriginPoint" type="Control" parent="Vectores-ProductoPunto"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 427.0
+offset_top = 9.0
+offset_right = 427.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VectorA" parent="Vectores-ProductoPunto/OriginPoint" instance=ExtResource("9_4sra1")]
+show_behind_parent = true
+z_index = 500
+rotation = 1.5707964
+vector_name = "u"
+
+[node name="VectorB" parent="Vectores-ProductoPunto/OriginPoint" instance=ExtResource("9_4sra1")]
+show_behind_parent = true
+z_index = 500
+vector_name = "v"
+
+[node name="DotProductLabel" type="Label" parent="Vectores-ProductoPunto"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 280.0
+offset_top = 357.0
+offset_right = 955.0
+offset_bottom = 586.0
+text = "u: (-0.00, 1.00)
+v: (1.00, 0.00)
+Θ: -90.00
+u . v = -0.0000"
+label_settings = SubResource("LabelSettings_a7dwd")
+
+[node name="Preguntas" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="¿Preguntas?" type="Label" parent="Preguntas"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.5
+offset_top = -78.5
+offset_right = 300.5
+offset_bottom = 78.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(292.5, 84.5)
+theme_override_styles/normal = SubResource("StyleBoxFlat_y722n")
+text = "¿Preguntas?"
+label_settings = SubResource("LabelSettings_y722n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Preguntas"]
+libraries = {
+&"": SubResource("AnimationLibrary_rxgjl")
+}
+autoplay = "new_animation"
+script = ExtResource("7_w1i3l")

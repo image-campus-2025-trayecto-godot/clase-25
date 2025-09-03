@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8g6uj40pie5a"]
+
+[ext_resource type="Script" uid="uid://cu4s3uwuvg2wh" path="res://diapositivas/dot_product/rotable_vector.gd" id="1_r2wjm"]
+
+[sub_resource type="GDScript" id="GDScript_r2wjm"]
+script/source = "extends Node2D
+
+func _draw() -> void:
+	draw_circle(get_global_mouse_position(), 5.0, Color.BLUE)
+	draw_rect(get_parent()._line_rect(), Color.RED)
+"
+
+[node name="VectorA" type="Line2D"]
+rotation = 0.00016936714
+points = PackedVector2Array(0, 0, 468, 0)
+script = ExtResource("1_r2wjm")
+metadata/_edit_lock_ = true
+
+[node name="Painter" type="Node2D" parent="."]
+top_level = true
+script = SubResource("GDScript_r2wjm")

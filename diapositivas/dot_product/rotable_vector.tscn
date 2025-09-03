@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8g6uj40pie5a"]
+
+[ext_resource type="Script" uid="uid://cu4s3uwuvg2wh" path="res://diapositivas/dot_product/rotable_vector.gd" id="1_r2wjm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r2wjm"]
+font_size = 50
+
+[node name="Vector" type="Line2D"]
+points = PackedVector2Array(0, 0, 468, 0)
+script = ExtResource("1_r2wjm")
+vector_name = null
+metadata/_edit_lock_ = true
+
+[node name="VectorName" type="Label" parent="."]
+offset_left = 205.0
+offset_top = -75.0
+offset_right = 245.0
+offset_bottom = -6.0
+text = "v"
+label_settings = SubResource("LabelSettings_r2wjm")
+horizontal_alignment = 1
