@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dvd7nakwwre3f"]
+[gd_scene load_steps=24 format=3 uid="uid://dvd7nakwwre3f"]
 
 [ext_resource type="Script" uid="uid://dtoovey3km3b3" path="res://addons/slides/diapositivas.gd" id="1_rsqhl"]
 [ext_resource type="Texture2D" uid="uid://plqq7bqjwbib" path="res://addons/slides/imagenes/image-background.jpg" id="2_x2bli"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://b8g6uj40pie5a" path="res://diapositivas/dot_product/rotable_vector.tscn" id="9_4sra1"]
 [ext_resource type="Script" uid="uid://c55dq6pg6tses" path="res://diapositivas/vectores_producto_punto.gd" id="9_a7dwd"]
 [ext_resource type="Script" uid="uid://b6n7ryblf5uqi" path="res://diapositivas/vectores_longitud.gd" id="10_longitud"]
+[ext_resource type="Script" uid="uid://wbickoarsoys" path="res://diapositivas/vectores_suma.gd" id="12_suma"]
+[ext_resource type="Script" uid="uid://ddt084y10ggaf" path="res://diapositivas/vectores_multiplicacion_escalar.gd" id="13_multiplicacion"]
 
 [sub_resource type="Theme" id="Theme_l4vhf"]
 RichTextLabel/colors/default_color = Color(0.96474224, 0.96474224, 0.9647421, 1)
@@ -94,7 +96,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 theme = SubResource("Theme_l4vhf")
 script = ExtResource("1_rsqhl")
-diapositiva_actual = 4
+diapositiva_actual = 2
 metadata/_edit_lock_ = true
 
 [node name="EjemploTitulo" type="Control" parent="."]
@@ -238,6 +240,329 @@ text = "- Vectores
 - Cuaterniones"
 label_settings = SubResource("LabelSettings_dftkn")
 
+[node name="Vectores-Suma" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("12_suma")
+metadata/_edit_lock_ = true
+
+[node name="Fondo" type="TextureRect" parent="Vectores-Suma"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("2_x2bli")
+
+[node name="MarginContainer" type="MarginContainer" parent="Vectores-Suma"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Vectores-Suma/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Titulo" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Vectores - Suma"
+label_settings = ExtResource("8_4sra1")
+
+[node name="Definicion" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Matemáticamente, se suma componente a componente:
+u + v = (ux + vx, uy + vy)
+
+Pensando los vectores como movimiento, podemos pensar que primero nos
+vemos siguiendo el primer vector, y desde ahí realizamos otro movimiento
+según lo que indica el segundo vector"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="ContenidoContainer" type="HBoxContainer" parent="Vectores-Suma/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="ControlesContainer" type="VBoxContainer" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
+
+[node name="Controles" type="VBoxContainer" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="UControl" type="HBoxContainer" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ULabel" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/UControl"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "u ="
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="UOpenParen" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/UControl"]
+layout_mode = 2
+text = "("
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="UXSpinBox" type="SpinBox" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/UControl"]
+layout_mode = 2
+min_value = -10.0
+max_value = 10.0
+step = 0.5
+value = 2.0
+alignment = 1
+
+[node name="UComma" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/UControl"]
+layout_mode = 2
+text = ", "
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="UYSpinBox" type="SpinBox" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/UControl"]
+layout_mode = 2
+min_value = -10.0
+max_value = 10.0
+step = 0.5
+value = 1.5
+alignment = 1
+
+[node name="UCloseParen" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/UControl"]
+layout_mode = 2
+text = ")"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="VControl" type="HBoxContainer" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VLabel" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VControl"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "v ="
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="VOpenParen" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VControl"]
+layout_mode = 2
+text = "("
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="VXSpinBox" type="SpinBox" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VControl"]
+layout_mode = 2
+min_value = -10.0
+max_value = 10.0
+step = 0.5
+value = 1.0
+alignment = 1
+
+[node name="VComma" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VControl"]
+layout_mode = 2
+text = ", "
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="VYSpinBox" type="SpinBox" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VControl"]
+layout_mode = 2
+min_value = -10.0
+max_value = 10.0
+step = 0.5
+value = 2.0
+alignment = 1
+
+[node name="VCloseParen" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VControl"]
+layout_mode = 2
+text = ")"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="ResultadoLabel" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
+layout_mode = 2
+text = "Resultado: u + v = (3.0, 3.5)"
+label_settings = SubResource("LabelSettings_a7dwd")
+
+[node name="VisualizacionContainer" type="VBoxContainer" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VisualizacionSuma" type="Control" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/VisualizacionContainer"]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+
+[node name="Vectores-MultiplicacionEscalar" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("13_multiplicacion")
+metadata/_edit_lock_ = true
+
+[node name="Fondo" type="TextureRect" parent="Vectores-MultiplicacionEscalar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("2_x2bli")
+
+[node name="MarginContainer" type="MarginContainer" parent="Vectores-MultiplicacionEscalar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Vectores-MultiplicacionEscalar/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Titulo" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Vectores - Multiplicación por Escalar"
+label_settings = ExtResource("8_4sra1")
+
+[node name="Definicion" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "La multiplicación por escalar cambia la magnitud de un vector.
+Se multiplica cada componente por el escalar k: k × v = (k × vx, k × vy)
+
+Si k > 0: mantiene la dirección. Si k < 0: invierte la dirección."
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="ContenidoContainer" type="HBoxContainer" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="ControlesContainer" type="VBoxContainer" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
+
+[node name="Formula" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
+layout_mode = 2
+text = "k × v = (k × vx, k × vy)"
+label_settings = SubResource("LabelSettings_a7dwd")
+
+[node name="Controles" type="VBoxContainer" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="VectorControls" type="VBoxContainer" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="VectorLabel" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls"]
+layout_mode = 2
+text = "Vector v:"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="VXControl" type="HBoxContainer" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VXLabel" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls/VXControl"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "x:"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="VXSlider" type="HSlider" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls/VXControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -4.0
+max_value = 4.0
+step = 0.5
+value = 2.0
+
+[node name="VXValue" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls/VXControl"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "2.0"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="VYControl" type="HBoxContainer" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VYLabel" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls/VYControl"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+text = "y:"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="VYSlider" type="HSlider" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls/VYControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -4.0
+max_value = 4.0
+step = 0.5
+value = 1.5
+
+[node name="VYValue" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls/VYControl"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "1.5"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="ScalarControl" type="HBoxContainer" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="ScalarLabel" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/ScalarControl"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "k:"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="ScalarSlider" type="HSlider" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/ScalarControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -3.0
+max_value = 3.0
+step = 0.1
+value = 1.5
+
+[node name="ScalarValue" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/ScalarControl"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "1.5"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="ResultadoLabel" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
+layout_mode = 2
+text = "Resultado: k × v = (3.0, 2.3)"
+label_settings = SubResource("LabelSettings_a7dwd")
+
+[node name="VisualizacionContainer" type="VBoxContainer" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VisualizacionMultiplicacion" type="Control" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/VisualizacionContainer"]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 2
+
 [node name="Vectores" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -342,11 +667,6 @@ label_settings = SubResource("LabelSettings_dftkn")
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="ControlsTitle" type="Label" parent="Vectores-Longitud/MarginContainer/VBoxContainer/InteractiveControls"]
-layout_mode = 2
-text = "Controles Interactivos:"
-label_settings = SubResource("LabelSettings_dftkn")
-
 [node name="MarginContainer" type="MarginContainer" parent="Vectores-Longitud/MarginContainer/VBoxContainer/InteractiveControls"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -450,6 +770,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Vectores-ProductoPunto" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
