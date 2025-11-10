@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dvd7nakwwre3f"]
+[gd_scene load_steps=34 format=3 uid="uid://dvd7nakwwre3f"]
 
 [ext_resource type="Script" uid="uid://dtoovey3km3b3" path="res://addons/slides/diapositivas.gd" id="1_rsqhl"]
 [ext_resource type="Texture2D" uid="uid://plqq7bqjwbib" path="res://addons/slides/imagenes/image-background.jpg" id="2_x2bli"]
@@ -15,7 +15,9 @@
 [ext_resource type="Script" uid="uid://wbickoarsoys" path="res://diapositivas/vectores_suma.gd" id="12_suma"]
 [ext_resource type="Script" uid="uid://ddt084y10ggaf" path="res://diapositivas/vectores_multiplicacion_escalar.gd" id="13_multiplicacion"]
 [ext_resource type="PackedScene" uid="uid://4x4urfdxnobk" path="res://diapositivas/components/VectorController.tscn" id="14_vector_controller"]
+[ext_resource type="Script" uid="uid://h61wyybc20dp" path="res://diapositivas/vectores-velocidad.gd" id="15_5kpbg"]
 [ext_resource type="PackedScene" uid="uid://dcqmsvgbwxoct" path="res://diapositivas/components/GridVisualization.tscn" id="15_grid_visualization"]
+[ext_resource type="Script" uid="uid://768duc4ytfqk" path="res://diapositivas/vectores-velocidad/personaje.gd" id="15_m7wve"]
 [ext_resource type="PackedScene" uid="uid://faa45ts8wyf3" path="res://diapositivas/components/ScalarController.tscn" id="16_scalar_controller"]
 [ext_resource type="PackedScene" uid="uid://beb864v1at0b4" path="res://diapositivas/components/MatrixController.tscn" id="17_matrix_controller"]
 [ext_resource type="Script" uid="uid://b1u486np1jyrp" path="res://diapositivas/matrices_multiplicacion.gd" id="18_matrices_multiplicacion"]
@@ -31,6 +33,11 @@ font_size = 35
 
 [sub_resource type="LabelSettings" id="LabelSettings_a7dwd"]
 font_size = 40
+
+[sub_resource type="Gradient" id="Gradient_ntu7s"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m7wve"]
+gradient = SubResource("Gradient_ntu7s")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y722n"]
 bg_color = Color(0.211765, 0.239216, 0.290196, 1)
@@ -104,7 +111,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 theme = SubResource("Theme_l4vhf")
 script = ExtResource("1_rsqhl")
-diapositiva_actual = 7
+diapositiva_actual = 8
 metadata/_edit_lock_ = true
 
 [node name="EjemploTitulo" type="Control" parent="."]
@@ -194,7 +201,7 @@ offset_left = -427.0
 offset_top = -91.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "03/11/2025"
+text = "10/11/2025"
 label_settings = ExtResource("6_6ewpg")
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -248,7 +255,98 @@ text = "- Vectores
 - Cuaterniones"
 label_settings = SubResource("LabelSettings_dftkn")
 
-[node name="Vectores-Suma" type="Control" parent="."]
+[node name="Vectores2" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Fondo" type="TextureRect" parent="Vectores2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("2_x2bli")
+
+[node name="VisualizacionContainer" type="VBoxContainer" parent="Vectores2"]
+layout_mode = 0
+offset_left = 207.0
+offset_top = 326.0
+offset_right = 934.0
+offset_bottom = 676.0
+scale = Vector2(2, 2)
+size_flags_horizontal = 3
+
+[node name="GridVisualization" parent="Vectores2/VisualizacionContainer" instance=ExtResource("15_grid_visualization")]
+layout_mode = 2
+coordinate_range = 8
+
+[node name="Line2D" type="Line2D" parent="Vectores2/VisualizacionContainer"]
+position = Vector2(3, 1)
+points = PackedVector2Array(361, 172, 601, 56)
+width = 5.0
+default_color = Color(1, 0, 0, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="Vectores2/VisualizacionContainer"]
+position = Vector2(3, 1)
+points = PackedVector2Array(511, 54, 510, 53)
+width = 5.0
+default_color = Color(0.27164698, 0.5106194, 1, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="Vectores2/VisualizacionContainer"]
+position = Vector2(-148, -29.5)
+points = PackedVector2Array(511, 54, 510, 53)
+width = 5.0
+default_color = Color(0.27164698, 0.5106194, 1, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Vectores2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Vectores2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Titulo" type="Label" parent="Vectores2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Vectores "
+label_settings = ExtResource("8_4sra1")
+
+[node name="Definicion" type="Label" parent="Vectores2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Los podemos pensar como posiciones o como movimientos."
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="ContenidoContainer" type="HBoxContainer" parent="Vectores2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Vectores-Suma2" type="Control" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -261,7 +359,7 @@ script = ExtResource("12_suma")
 coordinate_range = 8
 metadata/_edit_lock_ = true
 
-[node name="Fondo" type="TextureRect" parent="Vectores-Suma"]
+[node name="Fondo" type="TextureRect" parent="Vectores-Suma2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -273,7 +371,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 texture = ExtResource("2_x2bli")
 
-[node name="MarginContainer" type="MarginContainer" parent="Vectores-Suma"]
+[node name="MarginContainer" type="MarginContainer" parent="Vectores-Suma2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -283,16 +381,16 @@ grow_vertical = 2
 theme_override_constants/margin_left = 70
 theme_override_constants/margin_top = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Vectores-Suma/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Vectores-Suma2/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 40
 
-[node name="Titulo" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer"]
+[node name="Titulo" type="Label" parent="Vectores-Suma2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Vectores - Suma"
 label_settings = ExtResource("8_4sra1")
 
-[node name="Definicion" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer"]
+[node name="Definicion" type="Label" parent="Vectores-Suma2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Matemáticamente, se suma componente a componente:
 u + v = (ux + vx, uy + vy)
@@ -302,48 +400,48 @@ vemos siguiendo el primer vector, y desde ahí realizamos otro movimiento
 según lo que indica el segundo vector"
 label_settings = SubResource("LabelSettings_dftkn")
 
-[node name="ContenidoContainer" type="HBoxContainer" parent="Vectores-Suma/MarginContainer/VBoxContainer"]
+[node name="ContenidoContainer" type="HBoxContainer" parent="Vectores-Suma2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="ControlesContainer" type="VBoxContainer" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer"]
+[node name="ControlesContainer" type="VBoxContainer" parent="Vectores-Suma2/MarginContainer/VBoxContainer/ContenidoContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 30
 
-[node name="Controles" type="VBoxContainer" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
+[node name="Controles" type="VBoxContainer" parent="Vectores-Suma2/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="UController" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles" instance=ExtResource("14_vector_controller")]
+[node name="UController" parent="Vectores-Suma2/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles" instance=ExtResource("14_vector_controller")]
 layout_mode = 2
 vector_label = "u"
 vector_color = Color(0, 1, 1, 1)
 initial_vector = Vector2(2, 1.5)
 label_settings = SubResource("LabelSettings_haseu")
 
-[node name="VController" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles" instance=ExtResource("14_vector_controller")]
+[node name="VController" parent="Vectores-Suma2/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles" instance=ExtResource("14_vector_controller")]
 layout_mode = 2
 vector_color = Color(0, 1, 0, 1)
 initial_vector = Vector2(1, 2)
 label_settings = SubResource("LabelSettings_haseu")
 
-[node name="ResultadoLabel" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
+[node name="ResultadoLabel" type="Label" parent="Vectores-Suma2/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 text = "Resultado: u + v = (3.0, 3.5)"
 label_settings = SubResource("LabelSettings_a7dwd")
 
-[node name="ShowSumCheckbox" type="CheckBox" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
+[node name="ShowSumCheckbox" type="CheckBox" parent="Vectores-Suma2/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
 layout_mode = 2
 button_pressed = true
 text = "Mostrar vector suma (u + v)"
 
-[node name="VisualizacionContainer" type="VBoxContainer" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer"]
+[node name="VisualizacionContainer" type="VBoxContainer" parent="Vectores-Suma2/MarginContainer/VBoxContainer/ContenidoContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="GridVisualization" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/VisualizacionContainer" instance=ExtResource("15_grid_visualization")]
+[node name="GridVisualization" parent="Vectores-Suma2/MarginContainer/VBoxContainer/ContenidoContainer/VisualizacionContainer" instance=ExtResource("15_grid_visualization")]
 layout_mode = 2
 coordinate_range = 8
 
@@ -438,52 +536,6 @@ size_flags_horizontal = 3
 
 [node name="GridVisualization" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/VisualizacionContainer" instance=ExtResource("15_grid_visualization")]
 layout_mode = 2
-
-[node name="Vectores" type="Control" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-metadata/_edit_lock_ = true
-
-[node name="Fondo" type="TextureRect" parent="Vectores"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-texture = ExtResource("2_x2bli")
-
-[node name="MarginContainer" type="MarginContainer" parent="Vectores"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 70
-theme_override_constants/margin_top = 50
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Vectores/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 70
-
-[node name="Titulo" type="Label" parent="Vectores/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Vectores"
-label_settings = ExtResource("8_4sra1")
-
-[node name="Contenido" type="Label" parent="Vectores/MarginContainer/VBoxContainer"]
-layout_mode = 2
-label_settings = SubResource("LabelSettings_dftkn")
 
 [node name="Vectores-Longitud" type="Control" parent="."]
 visible = false
@@ -645,6 +697,61 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Vectores" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("15_5kpbg")
+metadata/_edit_lock_ = true
+
+[node name="Fondo" type="TextureRect" parent="Vectores"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("2_x2bli")
+
+[node name="MarginContainer" type="MarginContainer" parent="Vectores"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Vectores/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="Titulo" type="Label" parent="Vectores/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Vectores"
+label_settings = ExtResource("8_4sra1")
+
+[node name="Contenido" type="Label" parent="Vectores/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Velocidad: "
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Vectores"]
+position = Vector2(947, 531)
+script = ExtResource("15_m7wve")
+
+[node name="Sprite2D" type="Sprite2D" parent="Vectores/CharacterBody2D"]
+texture = SubResource("GradientTexture2D_m7wve")
+
 [node name="Vectores-ProductoPunto" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -805,6 +912,7 @@ theme_override_constants/separation = 30
 
 [node name="MatrixAController" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer" instance=ExtResource("17_matrix_controller")]
 layout_mode = 2
+matrix_color = Color(0, 1, 1, 1)
 label_settings = SubResource("LabelSettings_haseu")
 
 [node name="MultiplyLabel" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer"]
@@ -817,6 +925,7 @@ label_settings = SubResource("LabelSettings_a7dwd")
 [node name="MatrixBController" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer" instance=ExtResource("17_matrix_controller")]
 layout_mode = 2
 matrix_label = "B"
+matrix_color = Color(0, 1, 0, 1)
 initial_matrix = Array[float]([2.0, 0.0, 1.0, 3.0])
 label_settings = SubResource("LabelSettings_haseu")
 

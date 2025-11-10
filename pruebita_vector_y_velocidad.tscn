@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://duo02uywdvy8q"]
+
+[ext_resource type="Script" uid="uid://bawhsrhuoq1iu" path="res://sprite_2d.gd" id="1_se42n"]
+[ext_resource type="Script" uid="uid://u4ic0aeaf32" path="res://guardia.gd" id="2_14063"]
+
+[sub_resource type="Gradient" id="Gradient_5m4dk"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_se42n"]
+gradient = SubResource("Gradient_5m4dk")
+
+[sub_resource type="Gradient" id="Gradient_se42n"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_14063"]
+gradient = SubResource("Gradient_se42n")
+
+[sub_resource type="LabelSettings" id="LabelSettings_14063"]
+font_size = 50
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(322, 287)
+texture = SubResource("GradientTexture2D_se42n")
+script = ExtResource("1_se42n")
+
+[node name="CurrentSpeed" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Guardia" type="Node2D" parent="."]
+position = Vector2(853, 208)
+script = ExtResource("2_14063")
+
+[node name="Sprite2D" type="Sprite2D" parent="Guardia"]
+texture = SubResource("GradientTexture2D_14063")
+
+[node name="DotProduct" type="Label" parent="."]
+offset_left = 261.0
+offset_top = 457.0
+offset_right = 301.0
+offset_bottom = 480.0
+text = "Dot product: "
+label_settings = SubResource("LabelSettings_14063")
