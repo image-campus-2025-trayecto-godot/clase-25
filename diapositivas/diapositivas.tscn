@@ -326,7 +326,7 @@ theme_override_constants/separation = 70
 
 [node name="Titulo" type="Label" parent="Vectores-ProductoPunto/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Vectores"
+text = "Vectores - Producto Punto"
 label_settings = ExtResource("8_4sra1")
 
 [node name="Contenido" type="Label" parent="Vectores-ProductoPunto/MarginContainer/VBoxContainer"]
