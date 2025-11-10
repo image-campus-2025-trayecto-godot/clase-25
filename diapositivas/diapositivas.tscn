@@ -94,7 +94,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 theme = SubResource("Theme_l4vhf")
 script = ExtResource("1_rsqhl")
-diapositiva_actual = 3
+diapositiva_actual = 4
 metadata/_edit_lock_ = true
 
 [node name="EjemploTitulo" type="Control" parent="."]
@@ -285,6 +285,7 @@ layout_mode = 2
 label_settings = SubResource("LabelSettings_dftkn")
 
 [node name="Vectores-Longitud" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -294,10 +295,9 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("10_longitud")
 GRID_SPACING = 50.0
+FONT_SIZE = 20
 VECTOR_LINE_WIDTH = 5
 COMPONENT_LINE_WIDTH = 5
-ARROW_SIZE = 20.0
-FONT_SIZE = 20
 metadata/_edit_lock_ = true
 
 [node name="Fondo" type="TextureRect" parent="Vectores-Longitud"]
@@ -450,7 +450,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Vectores-ProductoPunto" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
