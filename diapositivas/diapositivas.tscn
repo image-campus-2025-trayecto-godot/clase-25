@@ -16,7 +16,7 @@
 [ext_resource type="Script" uid="uid://ddt084y10ggaf" path="res://diapositivas/vectores_multiplicacion_escalar.gd" id="13_multiplicacion"]
 [ext_resource type="PackedScene" uid="uid://4x4urfdxnobk" path="res://diapositivas/components/VectorController.tscn" id="14_vector_controller"]
 [ext_resource type="PackedScene" uid="uid://dcqmsvgbwxoct" path="res://diapositivas/components/GridVisualization.tscn" id="15_grid_visualization"]
-[ext_resource type="PackedScene" path="res://diapositivas/components/ScalarController.tscn" id="16_scalar_controller"]
+[ext_resource type="PackedScene" uid="uid://faa45ts8wyf3" path="res://diapositivas/components/ScalarController.tscn" id="16_scalar_controller"]
 [ext_resource type="PackedScene" uid="uid://beb864v1at0b4" path="res://diapositivas/components/MatrixController.tscn" id="17_matrix_controller"]
 [ext_resource type="Script" uid="uid://b1u486np1jyrp" path="res://diapositivas/matrices_multiplicacion.gd" id="18_matrices_multiplicacion"]
 
@@ -805,7 +805,6 @@ theme_override_constants/separation = 30
 
 [node name="MatrixAController" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer" instance=ExtResource("17_matrix_controller")]
 layout_mode = 2
-matrix_color = Color(0, 1, 1, 1)
 label_settings = SubResource("LabelSettings_haseu")
 
 [node name="MultiplyLabel" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer"]
@@ -818,7 +817,6 @@ label_settings = SubResource("LabelSettings_a7dwd")
 [node name="MatrixBController" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer" instance=ExtResource("17_matrix_controller")]
 layout_mode = 2
 matrix_label = "B"
-matrix_color = Color(0, 1, 0, 1)
 initial_matrix = Array[float]([2.0, 0.0, 1.0, 3.0])
 label_settings = SubResource("LabelSettings_haseu")
 
