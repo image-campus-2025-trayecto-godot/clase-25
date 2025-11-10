@@ -2,12 +2,8 @@
 extends Control
 
 # Exported constants for easy customization
-@export var grid_spacing: float = 30.0
-@export var grid_color: Color = Color(0.4, 0.4, 0.4, 0.6)
-@export var axis_color: Color = Color(0.8, 0.8, 0.8, 0.8)
 @export var vector_original_color: Color = Color.WHITE
 @export var vector_scaled_color: Color = Color.CYAN
-@export var coordinate_range: int = 4
 
 # Node references for controls
 @onready var v_controller: VectorController = $MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VController
@@ -19,9 +15,6 @@ extends Control
 @export_tool_button("Redraw") var redraw_button = _update_displays
 
 # Vector values
-var vector_x: float = 2.0
-var vector_y: float = 1.5
-var scalar: float = 1.5
 var show_scaled_vector: bool = true
 
 func _ready():
@@ -37,13 +30,6 @@ func _ready():
 		scalar_controller.scalar_label = "k"
 		scalar_controller.initial_value = 1.5
 		scalar_controller.scalar_changed.connect(_on_scalar_changed)
-	
-	# Configure grid visualization
-	if grid_visualization:
-		grid_visualization.grid_spacing = grid_spacing
-		grid_visualization.grid_color = grid_color
-		grid_visualization.axis_color = axis_color
-		grid_visualization.coordinate_range = coordinate_range
 	
 	# Connect checkbox signal
 	if show_scaled_checkbox:

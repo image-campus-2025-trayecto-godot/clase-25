@@ -97,7 +97,7 @@ func draw_vector(start: Vector2, vector: Vector2, color: Color, label: String = 
 		var label_pos = end_pos + Vector2(5, -5)
 		draw_string(get_theme_default_font(), label_pos, label, HORIZONTAL_ALIGNMENT_LEFT, -1, font_size + 2, color)
 
-func draw_dashed_line(start: Vector2, end: Vector2, color: Color, width: float = 2.0):
+func _draw_dashed_line(start: Vector2, end: Vector2, color: Color, width: float = 2.0):
 	var center = get_size() / 2
 	var start_pos = center + start * grid_spacing
 	var end_pos = center + end * grid_spacing

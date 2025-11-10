@@ -2,13 +2,9 @@
 extends Control
 
 # Exported constants for easy customization
-@export var grid_spacing: float = 30.0
-@export var grid_color: Color = Color(0.4, 0.4, 0.4, 0.6)
-@export var axis_color: Color = Color(0.8, 0.8, 0.8, 0.8)
 @export var vector_u_color: Color = Color.CYAN
 @export var vector_v_color: Color = Color.GREEN
 @export var vector_sum_color: Color = Color.RED
-@export var coordinate_range: int = 4
 
 # Node references for controls
 @onready var u_controller: VectorController = $MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/UController
@@ -20,10 +16,6 @@ extends Control
 @export_tool_button("Redraw") var redraw_button = _update_displays
 
 # Vector values
-var u_x: float = 2.0
-var u_y: float = 1.5
-var v_x: float = 1.0
-var v_y: float = 2.0
 var show_sum_vector: bool = true
 
 func _ready():
@@ -39,13 +31,6 @@ func _ready():
 		v_controller.vector_color = vector_v_color
 		v_controller.initial_vector = Vector2(1.0, 2.0)
 		v_controller.vector_changed.connect(_on_vector_changed)
-	
-	# Configure grid visualization
-	if grid_visualization:
-		grid_visualization.grid_spacing = grid_spacing
-		grid_visualization.grid_color = grid_color
-		grid_visualization.axis_color = axis_color
-		grid_visualization.coordinate_range = coordinate_range
 	
 	# Connect checkbox signal
 	if show_sum_checkbox:

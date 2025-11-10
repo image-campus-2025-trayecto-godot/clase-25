@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://faa45ts8wyf3"]
+
+[ext_resource type="Script" path="res://diapositivas/components/ScalarController.gd" id="1_scalar_controller"]
+
+[node name="ScalarController" type="HBoxContainer"]
+script = ExtResource("1_scalar_controller")
+theme_override_constants/separation = 10
+
+[node name="ScalarLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "k ="
+
+[node name="ScalarSpinBox" type="SpinBox" parent="."]
+layout_mode = 2
+min_value = -5.0
+max_value = 5.0
+step = 0.1
+value = 1.0
+alignment = 1

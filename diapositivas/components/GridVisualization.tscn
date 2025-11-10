@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcqmsvgbwxoct"]
+
+[ext_resource type="Script" uid="uid://cfderuwy4recv" path="res://diapositivas/components/GridVisualization.gd" id="1_grid_visualization"]
+
+[node name="GridVisualization" type="Control"]
+custom_minimum_size = Vector2(0, 350)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 408.0
+offset_bottom = 350.0
+script = ExtResource("1_grid_visualization")
