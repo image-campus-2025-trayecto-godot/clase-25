@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dvd7nakwwre3f"]
+[gd_scene load_steps=22 format=3 uid="uid://dvd7nakwwre3f"]
 
 [ext_resource type="Script" uid="uid://dtoovey3km3b3" path="res://addons/slides/diapositivas.gd" id="1_rsqhl"]
 [ext_resource type="Texture2D" uid="uid://plqq7bqjwbib" path="res://addons/slides/imagenes/image-background.jpg" id="2_x2bli"]
@@ -11,6 +11,7 @@
 [ext_resource type="LabelSettings" uid="uid://dt82lbtlp1h3k" path="res://addons/slides/resources/titulo_filmina_agenda_label_settings.tres" id="8_4sra1"]
 [ext_resource type="PackedScene" uid="uid://b8g6uj40pie5a" path="res://diapositivas/dot_product/rotable_vector.tscn" id="9_4sra1"]
 [ext_resource type="Script" uid="uid://c55dq6pg6tses" path="res://diapositivas/vectores_producto_punto.gd" id="9_a7dwd"]
+[ext_resource type="Script" uid="uid://b6n7ryblf5uqi" path="res://diapositivas/vectores_longitud.gd" id="10_longitud"]
 
 [sub_resource type="Theme" id="Theme_l4vhf"]
 RichTextLabel/colors/default_color = Color(0.96474224, 0.96474224, 0.9647421, 1)
@@ -283,7 +284,173 @@ label_settings = ExtResource("8_4sra1")
 layout_mode = 2
 label_settings = SubResource("LabelSettings_dftkn")
 
+[node name="Vectores-Longitud" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("10_longitud")
+GRID_SPACING = 50.0
+VECTOR_LINE_WIDTH = 5
+COMPONENT_LINE_WIDTH = 5
+ARROW_SIZE = 20.0
+FONT_SIZE = 20
+metadata/_edit_lock_ = true
+
+[node name="Fondo" type="TextureRect" parent="Vectores-Longitud"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("2_x2bli")
+
+[node name="MarginContainer" type="MarginContainer" parent="Vectores-Longitud"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Vectores-Longitud/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Titulo" type="Label" parent="Vectores-Longitud/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Vectores - Longitud (Magnitud)"
+label_settings = ExtResource("8_4sra1")
+
+[node name="Formula" type="Label" parent="Vectores-Longitud/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "La longitud de un vector se calcula usando el Teorema de Pitágoras:
+
+|v| = √(x² + y²)"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="InteractiveControls" type="VBoxContainer" parent="Vectores-Longitud/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ControlsTitle" type="Label" parent="Vectores-Longitud/MarginContainer/VBoxContainer/InteractiveControls"]
+layout_mode = 2
+text = "Controles Interactivos:"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="MarginContainer" type="MarginContainer" parent="Vectores-Longitud/MarginContainer/VBoxContainer/InteractiveControls"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_right = 1000
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Vectores-Longitud/MarginContainer/VBoxContainer/InteractiveControls/MarginContainer"]
+layout_mode = 2
+
+[node name="XControl" type="HBoxContainer" parent="Vectores-Longitud/MarginContainer/VBoxContainer/InteractiveControls/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="XLabel" type="Label" parent="Vectores-Longitud/MarginContainer/VBoxContainer/InteractiveControls/MarginContainer/VBoxContainer/XControl"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "X:"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="XSlider" type="HSlider" parent="Vectores-Longitud/MarginContainer/VBoxContainer/InteractiveControls/MarginContainer/VBoxContainer/XControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -5.0
+max_value = 5.0
+step = 0.1
+value = 3.0
+
+[node name="XValue" type="Label" parent="Vectores-Longitud/MarginContainer/VBoxContainer/InteractiveControls/MarginContainer/VBoxContainer/XControl"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "3.0"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="YControl" type="HBoxContainer" parent="Vectores-Longitud/MarginContainer/VBoxContainer/InteractiveControls/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="YLabel" type="Label" parent="Vectores-Longitud/MarginContainer/VBoxContainer/InteractiveControls/MarginContainer/VBoxContainer/YControl"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "Y:"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="YSlider" type="HSlider" parent="Vectores-Longitud/MarginContainer/VBoxContainer/InteractiveControls/MarginContainer/VBoxContainer/YControl"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -5.0
+max_value = 5.0
+step = 0.1
+value = 4.0
+
+[node name="YValue" type="Label" parent="Vectores-Longitud/MarginContainer/VBoxContainer/InteractiveControls/MarginContainer/VBoxContainer/YControl"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "4.0"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="ResultLabel" type="Label" parent="Vectores-Longitud/MarginContainer/VBoxContainer/InteractiveControls"]
+layout_mode = 2
+text = "Vector v = (3.0, 4.0)
+|v| = √(3.0² + 4.0²) = √(9.0 + 16.0) = √25.0 = 5.00"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="VisualizacionContainer" type="Control" parent="Vectores-Longitud"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -728.0
+offset_top = -200.0
+offset_right = -50.0
+offset_bottom = 380.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VectorVisualization" type="Control" parent="Vectores-Longitud/VisualizacionContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridLines" type="Control" parent="Vectores-Longitud/VisualizacionContainer/VectorVisualization"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VectorArrow" type="Control" parent="Vectores-Longitud/VisualizacionContainer/VectorVisualization"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Vectores-ProductoPunto" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
