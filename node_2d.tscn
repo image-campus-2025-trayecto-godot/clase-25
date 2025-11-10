@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://byxw7w7nkugid"]
+[gd_scene load_steps=7 format=3 uid="uid://byxw7w7nkugid"]
 
 [sub_resource type="Gradient" id="Gradient_y32ns"]
 
@@ -35,6 +35,16 @@ func update_transform():
 	#transform_matrix = transform
 "
 
+[sub_resource type="Gradient" id="Gradient_wtcfe"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0e48y"]
+gradient = SubResource("Gradient_wtcfe")
+fill_from = Vector2(0.22222222, 0.76495725)
+fill_to = Vector2(0.48290598, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_epypp"]
+albedo_texture = SubResource("GradientTexture2D_0e48y")
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -45,3 +55,9 @@ script = SubResource("GDScript_y32ns")
 scale_matrix = Transform2D(2, 0, 0, 2, 0, 0)
 translate_matrix = Transform2D(1, 0, 0, 1, 100, 50)
 transform_matrix = Transform2D(2, 0, 0, 2, 200, 100)
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Node3D"]
+cone = true
+material = SubResource("StandardMaterial3D_epypp")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dvd7nakwwre3f"]
+[gd_scene load_steps=30 format=3 uid="uid://dvd7nakwwre3f"]
 
 [ext_resource type="Script" uid="uid://dtoovey3km3b3" path="res://addons/slides/diapositivas.gd" id="1_rsqhl"]
 [ext_resource type="Texture2D" uid="uid://plqq7bqjwbib" path="res://addons/slides/imagenes/image-background.jpg" id="2_x2bli"]
@@ -17,6 +17,8 @@
 [ext_resource type="PackedScene" uid="uid://4x4urfdxnobk" path="res://diapositivas/components/VectorController.tscn" id="14_vector_controller"]
 [ext_resource type="PackedScene" uid="uid://dcqmsvgbwxoct" path="res://diapositivas/components/GridVisualization.tscn" id="15_grid_visualization"]
 [ext_resource type="PackedScene" path="res://diapositivas/components/ScalarController.tscn" id="16_scalar_controller"]
+[ext_resource type="PackedScene" uid="uid://beb864v1at0b4" path="res://diapositivas/components/MatrixController.tscn" id="17_matrix_controller"]
+[ext_resource type="Script" uid="uid://b1u486np1jyrp" path="res://diapositivas/matrices_multiplicacion.gd" id="18_matrices_multiplicacion"]
 
 [sub_resource type="Theme" id="Theme_l4vhf"]
 RichTextLabel/colors/default_color = Color(0.96474224, 0.96474224, 0.9647421, 1)
@@ -102,7 +104,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 theme = SubResource("Theme_l4vhf")
 script = ExtResource("1_rsqhl")
-diapositiva_actual = 1
+diapositiva_actual = 7
 metadata/_edit_lock_ = true
 
 [node name="EjemploTitulo" type="Control" parent="."]
@@ -198,6 +200,7 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Agenda" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -689,9 +692,20 @@ layout_mode = 2
 text = "Vectores - Producto Punto"
 label_settings = ExtResource("8_4sra1")
 
-[node name="Contenido" type="Label" parent="Vectores-ProductoPunto/MarginContainer/VBoxContainer"]
+[node name="Contenido" type="RichTextLabel" parent="Vectores-ProductoPunto/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(800, 0)
 layout_mode = 2
-label_settings = SubResource("LabelSettings_dftkn")
+size_flags_horizontal = 0
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "Dados	v=([color=red]x1[/color], [color=orange]y1[/color])		u=([color=purple]x2[/color], [color=cyan]y2[/color])
+				u . v = [color=red]x1[/color] * [color=purple]x2[/color] + [color=orange]y2[/color] * [color=cyan]y2[/color]
+
+v =	[color=red]x1[/color]    		u =	[color=purple]x2[/color]			u . v = [color=red]x1[/color] * [color=purple]x2[/color]
+		[color=orange]y1[/color]					[color=cyan]y2[/color]						[color=orange]y1[/color] * [color=cyan]y2[/color]"
+fit_content = true
+visible_characters = 60
+visible_ratio = 0.5
 
 [node name="OriginPoint" type="Control" parent="Vectores-ProductoPunto"]
 show_behind_parent = true
@@ -723,15 +737,216 @@ vector_name = "v"
 [node name="DotProductLabel" type="Label" parent="Vectores-ProductoPunto"]
 show_behind_parent = true
 layout_mode = 0
-offset_left = 280.0
-offset_top = 357.0
-offset_right = 955.0
-offset_bottom = 586.0
-text = "u: (-0.00, 1.00)
-v: (1.00, 0.00)
-Θ: -90.00
-u . v = -0.0000"
+offset_left = 79.0
+offset_top = 581.0
+offset_right = 911.0
+offset_bottom = 810.0
+text = "u: (-0.000, 1.000)
+v: (1.000, 0.000)
+Θ: -90.000
+u . v = -0.000 * 1.000 + 1.000 * 0.000 = -0.000"
 label_settings = SubResource("LabelSettings_a7dwd")
+
+[node name="Matrices-Multiplicacion" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("18_matrices_multiplicacion")
+metadata/_edit_lock_ = true
+
+[node name="Fondo" type="TextureRect" parent="Matrices-Multiplicacion"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_x2bli")
+
+[node name="MarginContainer" type="MarginContainer" parent="Matrices-Multiplicacion"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 70
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Matrices-Multiplicacion/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Titulo" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Matrices - Multiplicación"
+label_settings = ExtResource("8_4sra1")
+
+[node name="Definicion" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "La multiplicación de matrices se realiza multiplicando filas por columnas.
+"
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="ContenidoContainer" type="HBoxContainer" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="MatricesContainer" type="HBoxContainer" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="MatrixAController" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer" instance=ExtResource("17_matrix_controller")]
+layout_mode = 2
+matrix_color = Color(0, 1, 1, 1)
+label_settings = SubResource("LabelSettings_haseu")
+
+[node name="MultiplyLabel" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "×"
+label_settings = SubResource("LabelSettings_a7dwd")
+
+[node name="MatrixBController" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer" instance=ExtResource("17_matrix_controller")]
+layout_mode = 2
+matrix_label = "B"
+matrix_color = Color(0, 1, 0, 1)
+initial_matrix = Array[float]([2.0, 0.0, 1.0, 3.0])
+label_settings = SubResource("LabelSettings_haseu")
+
+[node name="EqualsLabel" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "="
+label_settings = SubResource("LabelSettings_a7dwd")
+
+[node name="ResultMatrixContainer" type="VBoxContainer" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="ResultMatrixLabel" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer/ResultMatrixContainer"]
+layout_mode = 2
+text = "C"
+label_settings = SubResource("LabelSettings_haseu")
+horizontal_alignment = 1
+
+[node name="MatrixDisplay" type="VBoxContainer" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer/ResultMatrixContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Row1" type="HBoxContainer" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer/ResultMatrixContainer/MatrixDisplay"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="LeftBracket1" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer/ResultMatrixContainer/MatrixDisplay/Row1"]
+layout_mode = 2
+text = "["
+label_settings = SubResource("LabelSettings_haseu")
+
+[node name="C11" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer/ResultMatrixContainer/MatrixDisplay/Row1"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "?"
+label_settings = SubResource("LabelSettings_haseu")
+horizontal_alignment = 1
+
+[node name="C12" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer/ResultMatrixContainer/MatrixDisplay/Row1"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "?"
+label_settings = SubResource("LabelSettings_haseu")
+horizontal_alignment = 1
+
+[node name="RightBracket1" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer/ResultMatrixContainer/MatrixDisplay/Row1"]
+layout_mode = 2
+text = "]"
+label_settings = SubResource("LabelSettings_haseu")
+
+[node name="Row2" type="HBoxContainer" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer/ResultMatrixContainer/MatrixDisplay"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="LeftBracket2" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer/ResultMatrixContainer/MatrixDisplay/Row2"]
+layout_mode = 2
+text = "["
+label_settings = SubResource("LabelSettings_haseu")
+
+[node name="C21" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer/ResultMatrixContainer/MatrixDisplay/Row2"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "?"
+label_settings = SubResource("LabelSettings_haseu")
+horizontal_alignment = 1
+
+[node name="C22" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer/ResultMatrixContainer/MatrixDisplay/Row2"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "?"
+label_settings = SubResource("LabelSettings_haseu")
+horizontal_alignment = 1
+
+[node name="RightBracket2" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/MatricesContainer/ResultMatrixContainer/MatrixDisplay/Row2"]
+layout_mode = 2
+text = "]"
+label_settings = SubResource("LabelSettings_haseu")
+
+[node name="ControlesContainer" type="VBoxContainer" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="NavigationContainer" type="HBoxContainer" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PrevButton" type="Button" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/NavigationContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "◀ Anterior"
+
+[node name="NextButton" type="Button" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/NavigationContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Siguiente ▶"
+
+[node name="ResetButton" type="Button" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
+layout_mode = 2
+text = "Reiniciar"
+
+[node name="CalculationContainer" type="VBoxContainer" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 15
+
+[node name="StepLabel" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/CalculationContainer"]
+visible = false
+layout_mode = 2
+text = "Usa los botones para navegar paso a paso por la multiplicación"
+label_settings = SubResource("LabelSettings_dftkn")
+autowrap_mode = 2
+
+[node name="EquationLabel" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/CalculationContainer"]
+layout_mode = 2
+text = "C = A × B"
+label_settings = SubResource("LabelSettings_a7dwd")
+horizontal_alignment = 1
+
+[node name="ResultLabel" type="Label" parent="Matrices-Multiplicacion/MarginContainer/VBoxContainer/ContenidoContainer/CalculationContainer"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_a7dwd")
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Preguntas" type="Control" parent="."]
 visible = false
