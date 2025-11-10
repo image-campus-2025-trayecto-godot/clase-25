@@ -96,7 +96,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 theme = SubResource("Theme_l4vhf")
 script = ExtResource("1_rsqhl")
-diapositiva_actual = 2
+diapositiva_actual = 7
 metadata/_edit_lock_ = true
 
 [node name="EjemploTitulo" type="Control" parent="."]
@@ -241,6 +241,7 @@ text = "- Vectores
 label_settings = SubResource("LabelSettings_dftkn")
 
 [node name="Vectores-Suma" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -249,6 +250,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("12_suma")
+coordinate_range = 8
 metadata/_edit_lock_ = true
 
 [node name="Fondo" type="TextureRect" parent="Vectores-Suma"]
@@ -310,6 +312,7 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="ULabel" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/UControl"]
+modulate = Color(0, 1, 1, 1)
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 text = "u ="
@@ -317,27 +320,27 @@ label_settings = SubResource("LabelSettings_dftkn")
 
 [node name="UOpenParen" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/UControl"]
 layout_mode = 2
-text = "("
+text = "( x ="
 label_settings = SubResource("LabelSettings_dftkn")
 
 [node name="UXSpinBox" type="SpinBox" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/UControl"]
 layout_mode = 2
 min_value = -10.0
 max_value = 10.0
-step = 0.5
+step = 0.1
 value = 2.0
 alignment = 1
 
 [node name="UComma" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/UControl"]
 layout_mode = 2
-text = ", "
+text = ", y ="
 label_settings = SubResource("LabelSettings_dftkn")
 
 [node name="UYSpinBox" type="SpinBox" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/UControl"]
 layout_mode = 2
 min_value = -10.0
 max_value = 10.0
-step = 0.5
+step = 0.1
 value = 1.5
 alignment = 1
 
@@ -351,6 +354,7 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="VLabel" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VControl"]
+modulate = Color(0, 1, 0, 1)
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 text = "v ="
@@ -358,27 +362,27 @@ label_settings = SubResource("LabelSettings_dftkn")
 
 [node name="VOpenParen" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VControl"]
 layout_mode = 2
-text = "("
+text = "( x ="
 label_settings = SubResource("LabelSettings_dftkn")
 
 [node name="VXSpinBox" type="SpinBox" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VControl"]
 layout_mode = 2
 min_value = -10.0
 max_value = 10.0
-step = 0.5
+step = 0.1
 value = 1.0
 alignment = 1
 
 [node name="VComma" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VControl"]
 layout_mode = 2
-text = ", "
+text = ", y ="
 label_settings = SubResource("LabelSettings_dftkn")
 
 [node name="VYSpinBox" type="SpinBox" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VControl"]
 layout_mode = 2
 min_value = -10.0
 max_value = 10.0
-step = 0.5
+step = 0.1
 value = 2.0
 alignment = 1
 
@@ -388,9 +392,15 @@ text = ")"
 label_settings = SubResource("LabelSettings_dftkn")
 
 [node name="ResultadoLabel" type="Label" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 2
-text = "Resultado: u + v = (3.0, 3.5)"
+text = "Resultado: u + v = (3.0, -3.5)"
 label_settings = SubResource("LabelSettings_a7dwd")
+
+[node name="ShowSumCheckbox" type="CheckBox" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Mostrar vector suma (u + v)"
 
 [node name="VisualizacionContainer" type="VBoxContainer" parent="Vectores-Suma/MarginContainer/VBoxContainer/ContenidoContainer"]
 layout_mode = 2
@@ -460,100 +470,79 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 30
 
-[node name="Formula" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
-layout_mode = 2
-text = "k × v = (k × vx, k × vy)"
-label_settings = SubResource("LabelSettings_a7dwd")
-
 [node name="Controles" type="VBoxContainer" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="VectorControls" type="VBoxContainer" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles"]
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="VectorLabel" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls"]
-layout_mode = 2
-text = "Vector v:"
-label_settings = SubResource("LabelSettings_dftkn")
-
-[node name="VXControl" type="HBoxContainer" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls"]
+[node name="VControl" type="HBoxContainer" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="VXLabel" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls/VXControl"]
-custom_minimum_size = Vector2(25, 0)
+[node name="VLabel" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VControl"]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
-text = "x:"
+text = "v ="
 label_settings = SubResource("LabelSettings_dftkn")
 
-[node name="VXSlider" type="HSlider" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls/VXControl"]
+[node name="VOpenParen" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VControl"]
 layout_mode = 2
-size_flags_horizontal = 3
-min_value = -4.0
-max_value = 4.0
-step = 0.5
+text = "( x ="
+label_settings = SubResource("LabelSettings_dftkn")
+
+[node name="VXSpinBox" type="SpinBox" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VControl"]
+layout_mode = 2
+min_value = -10.0
+max_value = 10.0
+step = 0.1
 value = 2.0
+alignment = 1
 
-[node name="VXValue" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls/VXControl"]
-custom_minimum_size = Vector2(40, 0)
+[node name="VComma" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VControl"]
 layout_mode = 2
-text = "2.0"
+text = ", y ="
 label_settings = SubResource("LabelSettings_dftkn")
 
-[node name="VYControl" type="HBoxContainer" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls"]
+[node name="VYSpinBox" type="SpinBox" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VControl"]
 layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="VYLabel" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls/VYControl"]
-custom_minimum_size = Vector2(25, 0)
-layout_mode = 2
-text = "y:"
-label_settings = SubResource("LabelSettings_dftkn")
-
-[node name="VYSlider" type="HSlider" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls/VYControl"]
-layout_mode = 2
-size_flags_horizontal = 3
-min_value = -4.0
-max_value = 4.0
-step = 0.5
+min_value = -10.0
+max_value = 10.0
+step = 0.1
 value = 1.5
+alignment = 1
 
-[node name="VYValue" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VectorControls/VYControl"]
-custom_minimum_size = Vector2(40, 0)
+[node name="VCloseParen" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/VControl"]
 layout_mode = 2
-text = "1.5"
+text = ")"
 label_settings = SubResource("LabelSettings_dftkn")
 
 [node name="ScalarControl" type="HBoxContainer" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles"]
 layout_mode = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 10
 
-[node name="ScalarLabel" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/ScalarControl"]
-custom_minimum_size = Vector2(40, 0)
+[node name="KLabel" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/ScalarControl"]
+custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
-text = "k:"
+text = "k ="
 label_settings = SubResource("LabelSettings_dftkn")
 
-[node name="ScalarSlider" type="HSlider" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/ScalarControl"]
+[node name="ScalarSpinBox" type="SpinBox" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/ScalarControl"]
 layout_mode = 2
-size_flags_horizontal = 3
-min_value = -3.0
-max_value = 3.0
+min_value = -5.0
+max_value = 5.0
 step = 0.1
 value = 1.5
-
-[node name="ScalarValue" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer/Controles/ScalarControl"]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-text = "1.5"
-label_settings = SubResource("LabelSettings_dftkn")
+alignment = 1
 
 [node name="ResultadoLabel" type="Label" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
+modulate = Color(0, 1, 1, 1)
 layout_mode = 2
-text = "Resultado: k × v = (3.0, 2.3)"
+text = "Resultado: k × v = (3.0, -2.3)"
 label_settings = SubResource("LabelSettings_a7dwd")
+
+[node name="ShowScaledCheckbox" type="CheckBox" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer/ControlesContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Mostrar vector escalado (k × v)"
 
 [node name="VisualizacionContainer" type="VBoxContainer" parent="Vectores-MultiplicacionEscalar/MarginContainer/VBoxContainer/ContenidoContainer"]
 layout_mode = 2
@@ -861,7 +850,6 @@ u . v = -0.0000"
 label_settings = SubResource("LabelSettings_a7dwd")
 
 [node name="Preguntas" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
