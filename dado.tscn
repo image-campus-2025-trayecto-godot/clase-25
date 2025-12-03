@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2veu8a1q2j5y"]
+
+[ext_resource type="PackedScene" uid="uid://djr3nauk1dc8u" path="res://assets/Dice/Dado .glb" id="1_noxxy"]
+
+[node name="Dado" type="Node3D"]
+
+[node name="Dado " parent="." instance=ExtResource("1_noxxy")]

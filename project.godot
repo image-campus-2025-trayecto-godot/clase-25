@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="clase-24"
+config/name="clase-25"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -24,7 +24,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/input-overlay/plugin.cfg", "res://addons/ruake/plugin.cfg", "res://addons/slides/plugin.cfg")
+enabled=PackedStringArray("res://addons/ruake/plugin.cfg", "res://addons/slides/plugin.cfg")
 
 [input]
 
@@ -121,4 +121,6 @@ move_down={
 
 [rendering]
 
+anti_aliasing/quality/msaa_3d=3
 limits/cluster_builder/max_clustered_elements=1024.0
+anti_aliasing/quality/screen_space_aa=1

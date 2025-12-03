@@ -1,0 +1,197 @@
+[gd_scene load_steps=12 format=3 uid="uid://htubp1rlrn0f"]
+
+[ext_resource type="Texture2D" uid="uid://co8yx228bwve2" path="res://assets/qwantani_dusk_2_puresky_1k.exr" id="1_4rfy2"]
+[ext_resource type="PackedScene" uid="uid://djr3nauk1dc8u" path="res://assets/Dice/Dado .glb" id="1_qcusy"]
+[ext_resource type="Script" uid="uid://tgm32pexh437" path="res://world_environment.gd" id="2_yt1v3"]
+[ext_resource type="Script" uid="uid://cwb80aodmu4ci" path="res://euler_angles.gd" id="4_b6yxb"]
+[ext_resource type="Script" uid="uid://djwhmfhi24rxd" path="res://assets/Dice/dado_2.gd" id="4_pgu1g"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_yt1v3"]
+panorama = ExtResource("1_4rfy2")
+energy_multiplier = 0.12
+
+[sub_resource type="Sky" id="Sky_4rfy2"]
+sky_material = SubResource("PanoramaSkyMaterial_yt1v3")
+
+[sub_resource type="Environment" id="Environment_yt1v3"]
+background_mode = 2
+sky = SubResource("Sky_4rfy2")
+tonemap_mode = 2
+ssr_enabled = true
+ssao_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yt1v3"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 0.78431374)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b6yxb"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.78431374)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4rfy2"]
+transparency = 1
+albedo_color = Color(0, 0, 1, 0.78431374)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yt1v3")
+script = ExtResource("2_yt1v3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_max_distance = 1.0
+
+[node name="Example" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 33.75547, 9.194373)
+
+[node name="Dado 2" parent="Example" instance=ExtResource("1_qcusy")]
+transform = Transform3D(0.99999994, 0, 0, 0, 1.0000002, 0, 0, 0, 0.99999976, 0, 0, -5.5)
+script = ExtResource("4_pgu1g")
+
+[node name="RingY" type="CSGTorus3D" parent="Example"]
+unique_name_in_owner = true
+transform = Transform3D(-4.3711385e-08, 0.9999999, 0, -0.99999994, -4.3711385e-08, 0, 0, 0, 0.9999998, 0, 0, 5.5)
+inner_radius = 5.0
+outer_radius = 5.5
+material = SubResource("StandardMaterial3D_yt1v3")
+
+[node name="RingX" type="CSGTorus3D" parent="Example/RingY"]
+unique_name_in_owner = true
+transform = Transform3D(-4.3711385e-08, -1.0000001, 0, 0.99999994, -4.3711392e-08, 0, 0, 0, 0.9999999, 0, 0, 0)
+inner_radius = 4.5
+outer_radius = 5.0
+material = SubResource("StandardMaterial3D_b6yxb")
+
+[node name="RingZ" type="CSGTorus3D" parent="Example/RingY/RingX"]
+unique_name_in_owner = true
+transform = Transform3D(1.9106857e-15, 4.3711385e-08, -1.0000002, 1.0000001, -4.3711385e-08, 0, -4.3711392e-08, -0.9999999, -4.37114e-08, 0, 0, 0)
+inner_radius = 4.0
+outer_radius = 4.5
+material = SubResource("StandardMaterial3D_4rfy2")
+
+[node name="Dado " parent="Example/RingY/RingX/RingZ" instance=ExtResource("1_qcusy")]
+transform = Transform3D(0.99999994, -3.5527137e-15, 0, 0, 1.0000002, 0, 0, 0, 0.99999976, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Example"]
+transform = Transform3D(-4.371139e-08, -0.2828437, 0.959166, 0, 0.959166, 0.2828437, -1, 1.236349e-08, -4.192648e-08, 11.444955, 5.4101067, 2.4970224)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer"]
+offset_left = 865.0
+offset_top = 541.0
+offset_right = 1058.0
+offset_bottom = 625.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="CopiarRotacionBoton" type="Button" parent="CanvasLayer/PanelContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Copiar rotación"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="UsandoCuaterniones" type="CheckBox" parent="CanvasLayer/PanelContainer2/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Usando cuaterniones"
+
+[node name="Reset" type="Button" parent="CanvasLayer/PanelContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Reset"
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -77.0
+offset_right = 240.0
+grow_vertical = 0
+
+[node name="EulerAngles" type="VBoxContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+script = ExtResource("4_b6yxb")
+
+[node name="Reset" type="Button" parent="CanvasLayer/PanelContainer/EulerAngles"]
+layout_mode = 2
+text = "Reset"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/EulerAngles"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/EulerAngles/HBoxContainer"]
+layout_mode = 2
+text = "Y"
+horizontal_alignment = 1
+
+[node name="SliderY" type="HSlider" parent="CanvasLayer/PanelContainer/EulerAngles/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 360.0
+
+[node name="ValueY" type="Label" parent="CanvasLayer/PanelContainer/EulerAngles/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Y"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/PanelContainer/EulerAngles"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/EulerAngles/HBoxContainer2"]
+layout_mode = 2
+text = "X"
+horizontal_alignment = 1
+
+[node name="SliderX" type="HSlider" parent="CanvasLayer/PanelContainer/EulerAngles/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 360.0
+
+[node name="ValueX" type="Label" parent="CanvasLayer/PanelContainer/EulerAngles/HBoxContainer2"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "X"
+horizontal_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/PanelContainer/EulerAngles"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/EulerAngles/HBoxContainer3"]
+layout_mode = 2
+text = "Z"
+horizontal_alignment = 1
+
+[node name="SliderZ" type="HSlider" parent="CanvasLayer/PanelContainer/EulerAngles/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 360.0
+
+[node name="ValueZ" type="Label" parent="CanvasLayer/PanelContainer/EulerAngles/HBoxContainer3"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Z"
+horizontal_alignment = 1

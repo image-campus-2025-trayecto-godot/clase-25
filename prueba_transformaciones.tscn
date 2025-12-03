@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cl7se8dle0lxb"]
+
+[ext_resource type="Script" uid="uid://d27c7qxvpd1bx" path="res://transformaciones_nodo.gd" id="1_wwccj"]
+[ext_resource type="Script" uid="uid://b54hutc7ursgo" path="res://sprite_2d_2.gd" id="2_q7knq"]
+
+[sub_resource type="Gradient" id="Gradient_wbcrf"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wwccj"]
+gradient = SubResource("Gradient_wbcrf")
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(256, 81)
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(10, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(190, -1)
+texture = SubResource("GradientTexture2D_wwccj")
+script = ExtResource("1_wwccj")
+mi_transform = Transform2D(1, 0, 0, 1, 200, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+position = Vector2(-190, 1)
+texture = SubResource("GradientTexture2D_wwccj")
+script = ExtResource("2_q7knq")
