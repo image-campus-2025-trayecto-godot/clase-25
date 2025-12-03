@@ -88,11 +88,10 @@ size_flags_vertical = 3
 mouse_filter = 2
 theme = SubResource("Theme_l4vhf")
 script = ExtResource("1_rsqhl")
-diapositiva_actual = 1
+diapositiva_actual = 0
 metadata/_edit_lock_ = true
 
 [node name="EjemploTitulo" type="Control" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -143,7 +142,7 @@ offset_bottom = 220.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/normal = ExtResource("4_vpeoj")
-text = "Clase 24
+text = "Clase 25
 Cuaterniones"
 label_settings = ExtResource("4_rxgjl")
 horizontal_alignment = 1
@@ -184,6 +183,7 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Agenda" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
